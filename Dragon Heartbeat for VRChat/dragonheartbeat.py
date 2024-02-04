@@ -21,7 +21,7 @@ def send_text_to_vrchat(text):
         ip = "127.0.0.1"
         port = 9000
 
-        text = text + " bps"
+        text = text + " bpm"
 
         # Initialize OSC client
         client = udp_client.SimpleUDPClient(ip, port)
