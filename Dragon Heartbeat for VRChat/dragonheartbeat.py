@@ -8,22 +8,33 @@ from pythonosc import udp_client
 import time
 import threading
 
+# Global variable to track the last send time
+last_send_time = 0
+
 def send_text_to_vrchat(text):
-    # VRChat OSC server IP and port
-    ip = "127.0.0.1"
-    port = 9000
+    global last_send_time
+    current_time = time.time()
 
-    text = text + " bps"
+    # Check if 5 seconds have passed since the last send
+    if current_time - last_send_time >= 5:
+        # VRChat OSC server IP and port
+        ip = "127.0.0.1"
+        port = 9000
 
-    # Initialize OSC client
-    client = udp_client.SimpleUDPClient(ip, port)
+        text = text + " bps"
 
-    # The OSC address for displaying text in the chatbox
-    osc_address = "/chatbox/input"
+        # Initialize OSC client
+        client = udp_client.SimpleUDPClient(ip, port)
 
-    # Send the text message
-    client.send_message(osc_address, [text, True, False])
-    print(f"Sent to VRChat chatbox: {text}")
+        # The OSC address for displaying text in the chatbox
+        osc_address = "/chatbox/input"
+
+        # Send the text message
+        client.send_message(osc_address, [text, True, False])
+        print(f"Sent to VRChat chatbox: {text}")
+        last_send_time = current_time
+    else:
+        print(f"Waiting to send: {text}")
 
 def handle_incoming_message(unused_addr, args, *values):
     text = ' '.join(map(str, values))
