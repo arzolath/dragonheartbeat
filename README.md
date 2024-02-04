@@ -6,6 +6,16 @@ Display your Heartbeat in VRChat's Chatbox.
 - [Hyperate App](https://www.hyperate.io/downloads) installed on your [supported device](https://www.hyperate.io/supported-devices)
 - [HRtoVRChat_OSC](https://hrtovrchat.fortnite.lol/download#h.w34oohk7gucz)
 
+# Installing Python for the first time
+1- Download and install [Python](https://www.python.org/downloads/)
+
+2- Restart your computer.
+
+3- Run Command Prompt (cmd) as Administrator.
+
+4- Run **python -m pip install --upgrade pip**
+
+
 # How to install
 1- Run Hyperate on your device and grab the **Session ID**.
 
